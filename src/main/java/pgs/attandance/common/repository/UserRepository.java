@@ -9,6 +9,7 @@ import pgs.attandance.common.core.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
      User findByUsername(String userName);
+     User findById(Long id);
 
 
 }
