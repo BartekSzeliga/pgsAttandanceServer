@@ -52,6 +52,13 @@ public class UserService {
         userRepository.save(user);
 
         List<String> roles = userCreateApi.getRoles();
+        List<Role> roleList = getUserRoles(roles, user);
+
+        user.setRoles(roleList);
+        return convertToDTO(user);
+    }
+
+    public List<Role> getUserRoles(List<String> roles, User user) {
         List<Role> roleList = new ArrayList<>();
         roles.forEach(role -> {
             Role rol = new Role();
@@ -60,8 +67,8 @@ public class UserService {
             roleRepository.save(rol);
             roleList.add(rol);
         });
-        user.setRoles(roleList);
-        return convertToDTO(user);
+        return roleList;
+
     }
 
 
