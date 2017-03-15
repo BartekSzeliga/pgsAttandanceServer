@@ -1,0 +1,23 @@
+package pgs.attandance.common.DTO;
+
+
+import java.util.List;
+
+public class RolesDTO {
+    private List<String> roles;
+
+    public RolesDTO() {
+    }
+
+    public RolesDTO(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+}
