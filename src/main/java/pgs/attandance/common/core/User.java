@@ -10,20 +10,23 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "Users_id_seq", sequenceName = "Users_id_seq", allocationSize = 1)
     private long id;
 
     @NotNull
-    @Column(name = "username")
-    private String username;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @NotNull
     @Column(name = "password")
     private String password;
 
     @NotNull
-    @Column(name = "status")
-    private boolean status;
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     @OneToMany(mappedBy = "user")
     private List<Role> roles;
@@ -31,21 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<ActivitiesToUser> activitiesToUser2;
 
-
     public User() {
-    }
-
-    public User(String username, String password, boolean status) {
-        this.username = username;
-        this.password = password;
-        this.status = status;
-    }
-
-    public User(String username, String password, boolean status, List<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.status = status;
-        this.roles = roles;
     }
 
     public long getId() {
@@ -56,12 +45,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -72,12 +61,20 @@ public class User {
         this.password = password;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public List<Role> getRoles() {

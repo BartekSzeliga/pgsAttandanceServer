@@ -1,13 +1,14 @@
 package pgs.attandance.common.resources;
 
 
+import com.google.common.base.Preconditions;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pgs.attandance.common.DTO.UserDTO;
 import pgs.attandance.common.api.UserCreateApi;
 import pgs.attandance.common.api.UserResponse;
+import pgs.attandance.common.api.UserUpdateApi;
 import pgs.attandance.common.core.Role;
 import pgs.attandance.common.core.User;
 import pgs.attandance.common.repository.RoleRepository;
@@ -50,9 +51,19 @@ public class UserController {
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
+    @RequestMapping(value = "api/update{id}", method = RequestMethod.PUT)
+    public UserDTO update(@PathVariable Long id ,
+                          @Valid @RequestBody UserUpdateApi userUpdateApi) {
+        return userService.update(id, userUpdateApi);
+    }
+
+
+    @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
+    @ResponseBody
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public UserDTO get(@PathVariable Long id) {
         User user = userRepository.findById(id);
+        Preconditions.checkNotNull(user,"Podaj poprawne id");
         UserDTO userDTO = userService.convertToDTO(user);
         return userDTO;
     }

@@ -31,24 +31,24 @@ public class AuthResource {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public LoginResponse login(@RequestBody final UserLogin login)
             throws ServletException {
-        User user = userRepository.findByUsername(login.userName);
+        User user = userRepository.findByEmail(login.email);
         UserDTO userDTO = userService.convertToDTO(user);
 
-        if (login.userName == null || user == null) {
+        if (login.email == null || user == null) {
             throw new ServletException("Invalid login ");
         }
         Boolean checkpw = BCrypt.checkpw(login.password, user.getPassword());
         if (login.password == null || !checkpw) {
             throw new ServletException("Invalid password");
         }
-        return new LoginResponse(Jwts.builder().setSubject(userDTO.getUserName())
+        return new LoginResponse(Jwts.builder().setSubject(userDTO.getEmail())
                 .claim("roles", userDTO.getRoles())
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, "secretkey").compact());
     }
 
     private static class UserLogin {
-        public String userName;
+        public String email;
         public String password;
     }
 

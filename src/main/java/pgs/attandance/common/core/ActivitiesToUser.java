@@ -2,7 +2,6 @@ package pgs.attandance.common.core;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "activitiesToUser")
@@ -14,7 +13,6 @@ public class ActivitiesToUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
     protected Long id;
 
-
     @NotNull
     @ManyToOne()
     private Activity activity;
@@ -23,9 +21,7 @@ public class ActivitiesToUser {
     @ManyToOne()
     private User user;
 
-    @NotNull
     private Boolean isPresent;
-
 
 
     public Long getId() {
