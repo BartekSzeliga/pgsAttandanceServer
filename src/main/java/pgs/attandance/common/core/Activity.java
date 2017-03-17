@@ -4,6 +4,7 @@ package pgs.attandance.common.core;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,15 @@ public class Activity {
     @Size(min = 4, max = 30)
     private String name;
 
-    @OneToMany(mappedBy = "activities")
-    private List<ActivitiesToUser> activitiesToUser;
+    @OneToMany(mappedBy = "activity")
+    private List<ActivitiesToUser> activitiesToUser3;
+
+    @NotNull
+    private String activityPlace;
+
+    @NotNull
+    private LocalDateTime activityDate;
+
 
     public Long getId() {
         return id;
@@ -37,11 +45,27 @@ public class Activity {
         this.name = name;
     }
 
-    public List<ActivitiesToUser> getActivitiesToUser() {
-        return activitiesToUser;
+    public List<ActivitiesToUser> getActivitiesToUser3() {
+        return activitiesToUser3;
     }
 
-    public void setActivitiesToUser(List<ActivitiesToUser> activitiesToUser) {
-        this.activitiesToUser = activitiesToUser;
+    public void setActivitiesToUser3(List<ActivitiesToUser> activitiesToUser3) {
+        this.activitiesToUser3 = activitiesToUser3;
+    }
+
+    public String getActivityPlace() {
+        return activityPlace;
+    }
+
+    public void setActivityPlace(String activityPlace) {
+        this.activityPlace = activityPlace;
+    }
+
+    public LocalDateTime getActivityDate() {
+        return activityDate;
+    }
+
+    public void setActivityDate(LocalDateTime activityDate) {
+        this.activityDate = activityDate;
     }
 }

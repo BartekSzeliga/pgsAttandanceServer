@@ -28,6 +28,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private List<ActivitiesToUser> activitiesToUser2;
+
+
     public User() {
     }
 
@@ -82,5 +86,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<ActivitiesToUser> getActivitiesToUser2() {
+        return activitiesToUser2;
+    }
+
+    public void setActivitiesToUser2(List<ActivitiesToUser> activitiesToUser2) {
+        this.activitiesToUser2 = activitiesToUser2;
     }
 }

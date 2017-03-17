@@ -17,16 +17,16 @@ public class ActivitiesToUser {
 
     @NotNull
     @ManyToOne()
-    @JoinColumn(name = "activitiesId", nullable = false)
-    private Activity activities;
+    private Activity activity;
 
     @NotNull
-    @OneToOne(optional = false)
-    @JoinColumn(name = "userId", nullable = false)
+    @ManyToOne()
     private User user;
 
-    @OneToMany(mappedBy = "activitiesToUser")
-    private List<Attendance> attendances;
+    @NotNull
+    private Boolean isPresent;
+
+
 
     public Long getId() {
         return id;
@@ -36,12 +36,12 @@ public class ActivitiesToUser {
         this.id = id;
     }
 
-    public Activity getActivities() {
-        return activities;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setActivities(Activity activities) {
-        this.activities = activities;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     public User getUser() {
@@ -52,11 +52,11 @@ public class ActivitiesToUser {
         this.user = user;
     }
 
-    public List<Attendance> getAttendances() {
-        return attendances;
+    public Boolean getPresent() {
+        return isPresent;
     }
 
-    public void setAttendances(List<Attendance> attendances) {
-        this.attendances = attendances;
+    public void setPresent(Boolean present) {
+        isPresent = present;
     }
 }
