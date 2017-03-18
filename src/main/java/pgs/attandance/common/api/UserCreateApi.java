@@ -1,7 +1,5 @@
 package pgs.attandance.common.api;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

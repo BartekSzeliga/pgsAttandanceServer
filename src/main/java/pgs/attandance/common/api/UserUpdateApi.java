@@ -1,17 +1,16 @@
 package pgs.attandance.common.api;
 
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserUpdateApi {
 
-    @NotNull
+    @NotEmpty
     private String email;
     private String firstName;
     private String lastName;
     private String password;
-    private List<String> roles;
 
 
     public String getEmail() {
@@ -28,14 +27,6 @@ public class UserUpdateApi {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
     }
 
     public String getFirstName() {

@@ -1,6 +1,7 @@
 package pgs.attandance.common.service;
 
 
+import com.google.common.base.Preconditions;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,6 +79,7 @@ public class UserService {
 
     public UserDTO update(Long id, UserUpdateApi userUpdateApi) {
         User user = userRepository.findById(id);
+        Preconditions.checkNotNull(user, "Podaj poprawne id użytkownika");
 
         user.setEmail(userUpdateApi.getEmail());
         user.setFirstName(userUpdateApi.getFirstName());
