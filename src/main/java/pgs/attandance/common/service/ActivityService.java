@@ -50,7 +50,7 @@ public class ActivityService {
         activity.setActivityDescription(Optional.ofNullable(activityCreateApi.getActivityDescription()).orElse(""));
 
         activityRepository.save(activity);
-        List<User> users = userRepository.findAllWithQueryDescription();
+        List<User> users = userRepository.findAllWithRoleNameStudent();
         users.forEach(user -> {
             ActivitiesToUser activitiesToUser = new ActivitiesToUser();
             activitiesToUser.setUser(user);

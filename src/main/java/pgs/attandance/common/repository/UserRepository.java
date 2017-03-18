@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      @Query(nativeQuery = true, value = "select * from users \n" +
              "join roles on users.id = roles.user_id\n" +
              "where roles.rolename = 'Student'")
-     List<User> findAllWithQueryDescription();
+     List<User> findAllWithRoleNameStudent();
 
 
 }
