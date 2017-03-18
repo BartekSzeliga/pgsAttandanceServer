@@ -1,15 +1,20 @@
-package pgs.attandance.common.api;
+package pgs.attandance.common.api.UserApi;
 
 
-
-import org.hibernate.validator.constraints.NotEmpty;
+import io.swagger.annotations.ApiModelProperty;
 
 public class UserUpdateApi {
 
-    @NotEmpty
+    @ApiModelProperty(value = "Email", required = true)
     private String email;
+
+    @ApiModelProperty(value = "First Name", required = true)
     private String firstName;
+
+    @ApiModelProperty(value = "Last Name", required = true)
     private String lastName;
+
+    @ApiModelProperty(value = "password")
     private String password;
 
 

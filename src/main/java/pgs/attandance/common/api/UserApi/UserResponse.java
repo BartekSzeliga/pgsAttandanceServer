@@ -1,4 +1,4 @@
-package pgs.attandance.common.api;
+package pgs.attandance.common.api.UserApi;
 
 
 

@@ -28,6 +28,8 @@ public class Activity {
     @NotNull
     private LocalDateTime activityDate;
 
+    private String activityDescription;
+
 
     public Long getId() {
         return id;
@@ -67,5 +69,13 @@ public class Activity {
 
     public void setActivityDate(LocalDateTime activityDate) {
         this.activityDate = activityDate;
+    }
+
+    public String getActivityDescription() {
+        return activityDescription;
+    }
+
+    public void setActivityDescription(String activityDescription) {
+        this.activityDescription = activityDescription;
     }
 }

@@ -1,20 +1,25 @@
-package pgs.attandance.common.api;
+package pgs.attandance.common.api.UserApi;
 
-import javax.validation.constraints.NotNull;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.List;
 
 
 public class UserCreateApi {
 
-    @NotNull
+    @ApiModelProperty(value = "Email", required = true)
     private String email;
-    @NotNull
+
+    @ApiModelProperty(value = "First Name", required = true)
     private String firstName;
-    @NotNull
+
+    @ApiModelProperty(value = "Last Name", required = true)
     private String lastName;
-    @NotNull
+
+    @ApiModelProperty(value = "password", required = true)
     private String password;
-    @NotNull
+
+    @ApiModelProperty(value = "Roles", required = true)
     private List<String> roles;
 
 
