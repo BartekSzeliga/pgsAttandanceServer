@@ -35,7 +35,7 @@ public class ActivityController {
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
-    @RequestMapping(value = "api/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ActivityResponse getAll() {
         List<Activity> activitys = activityRepository.findAll();
         return new ActivityResponse(activitys.stream()
@@ -46,14 +46,14 @@ public class ActivityController {
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
-    @RequestMapping(value = "api/create", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ActivityDTO create(@Valid @RequestBody ActivityCreateApi activityCreateApi) {
         return activityService.create(activityCreateApi);
     }
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
-    @RequestMapping(value = "api/update{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ActivityDTO update(@PathVariable Long id ,
                           @Valid @RequestBody ActivityUpdateApi activityUpdateApi) {
         Activity activity = activityRepository.findOne(id);
@@ -64,7 +64,7 @@ public class ActivityController {
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
-    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ActivityDTO get(@PathVariable Long id) {
         Activity activity = activityRepository.findOne(id);
         Preconditions.checkNotNull(activity,"Podaj poprawne id");
@@ -74,7 +74,7 @@ public class ActivityController {
 
     @ApiImplicitParam(name = "Authorization", value = "Bearer", dataType = "string", paramType = "header")
     @ResponseBody
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable Long id) {
         List<ActivitiesToUser> activitiesToUsers = activitiesToUserRepository.findAllByActivityId(id);
 
