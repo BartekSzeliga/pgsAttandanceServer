@@ -51,6 +51,12 @@ public class ActivityService {
 
         activityRepository.save(activity);
         List<User> users = userRepository.findAllWithRoleNameStudent();
+        addActivitiesToUser(activity, users);
+
+        return convertToDTO(activity);
+    }
+
+    private void addActivitiesToUser(Activity activity, List<User> users) {
         users.forEach(user -> {
             ActivitiesToUser activitiesToUser = new ActivitiesToUser();
             activitiesToUser.setUser(user);
@@ -58,9 +64,6 @@ public class ActivityService {
 
             activitiesToUserRepository.save(activitiesToUser);
         });
-
-
-        return convertToDTO(activity);
     }
 
 

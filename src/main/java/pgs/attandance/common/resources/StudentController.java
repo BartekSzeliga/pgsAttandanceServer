@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "api/user/")
-public class UserController {
+@RequestMapping(value = "api/student/")
+public class StudentController {
 
     @Autowired
     private UserRepository userRepository;
@@ -36,7 +36,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "getAll", method = RequestMethod.GET)
     public UserResponse getAll() {
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAllWithRoleNameStudent();
         return new UserResponse(users.stream()
                 .map(obj -> userService.convertToDTO(obj))
                 .collect(Collectors.toList()));
