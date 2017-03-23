@@ -72,12 +72,12 @@ public class UserService {
         user.setRoles(roleList);
 
         List<Activity> activities = activityRepository.findAll();
-        addActivitiesToUser(user, activities);
+        addUserToActivities(user, activities);
 
         return convertToDTO(user);
     }
 
-    private void addActivitiesToUser(User user, List<Activity> activities) {
+    private void addUserToActivities(User user, List<Activity> activities) {
         activities.forEach(activity -> {
             ActivitiesToUser activitiesToUser = new ActivitiesToUser();
             activitiesToUser.setUser(user);
