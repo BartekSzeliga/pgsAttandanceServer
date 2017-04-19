@@ -28,7 +28,6 @@ public class ActivityService {
     @Autowired
     private ActivitiesToUserRepository activitiesToUserRepository;
 
-
     public ActivityDTO convertToDTO(Activity activity) {
         return new ActivityDTO(
                 activity.getId(),
@@ -37,22 +36,18 @@ public class ActivityService {
                 activity.getActivityDate(),
                 activity.getActivityDescription()
         );
-
     }
-
 
     public ActivityDTO create(ActivityCreateApi activityCreateApi) {
         Activity activity = new Activity();
+        List<User> users = userRepository.findAllWithRoleNameStudent();
 
         activity.setName(activityCreateApi.getActivityName());
         activity.setActivityPlace(activityCreateApi.getActivityPlace());
         activity.setActivityDate(activityCreateApi.getActivityDate());
         activity.setActivityDescription(Optional.ofNullable(activityCreateApi.getActivityDescription()).orElse(""));
-
         activityRepository.save(activity);
-        List<User> users = userRepository.findAllWithRoleNameStudent();
         addActivitiesToUser(activity, users);
-
         return convertToDTO(activity);
     }
 
@@ -61,21 +56,16 @@ public class ActivityService {
             ActivitiesToUser activitiesToUser = new ActivitiesToUser();
             activitiesToUser.setUser(user);
             activitiesToUser.setActivity(activity);
-
             activitiesToUserRepository.save(activitiesToUser);
         });
     }
 
-
     public ActivityDTO update(Activity activity, ActivityUpdateApi activityUpdateApi) {
-
         activity.setName(activityUpdateApi.getActivityName());
         activity.setActivityPlace(activityUpdateApi.getActivityPlace());
         activity.setActivityDate(activityUpdateApi.getActivityDate());
         activity.setActivityDescription(activityUpdateApi.getActivityDescription());
-
         activityRepository.save(activity);
-
         return convertToDTO(activity);
     }
 }
